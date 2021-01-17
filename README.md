@@ -11,7 +11,7 @@ export GOPATH=$GOPATH:~/workspace
 cd ~/workspace/src
 git clone 
 go build -o groupquery
-./groupquery
+./groupquery -f data.csv
 
 # 测试
 go test -v  ./...

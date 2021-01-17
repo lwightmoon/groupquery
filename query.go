@@ -177,7 +177,9 @@ func (e *queryExecer) runGroupFunc(f func([]int) int) (<-chan result, error) {
 	return allRet, nil
 }
 
-func (e *queryExecer) run(f func([]int) int) error {
+type aggregate func([]int) int
+
+func (e *queryExecer) run(f aggregate) error {
 	ch, err := e.runGroupFunc(f)
 	if err != nil {
 		return err

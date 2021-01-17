@@ -37,7 +37,7 @@ func TestMain(m *testing.M) {
 		panic(fmt.Sprintf("generate test data err:%v", err))
 	}
 	m.Run()
-	os.Remove(testfname)
+	// os.Remove(testfname)
 }
 func TestRunGroupFunc(t *testing.T) {
 	execer := newQueryExecer(4, testfname)

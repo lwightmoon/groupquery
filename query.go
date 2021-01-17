@@ -20,7 +20,7 @@ type result struct {
 }
 
 type queryExecer struct {
-	concurrentSize int    //call func 并发数
+	concurrentSize int    //call func concurrent number
 	fname          string //data file
 }
 
@@ -67,7 +67,7 @@ func (e *queryExecer) getRecords() (<-chan record, error) {
 	return ch, nil
 }
 
-// shuffle 分发数据到多个channel
+// shuffle data to multi channel
 func (e *queryExecer) shuffle(ch <-chan record) []chan record {
 	chs := make([]chan record, e.concurrentSize)
 	for i := 0; i < e.concurrentSize; i++ {
@@ -86,7 +86,7 @@ func (e *queryExecer) shuffle(ch <-chan record) []chan record {
 	return chs
 }
 
-// sortAndExec 对数据排序；获取grop key对应的数组；对数组执行func
+// sortAndExec sort by b and exec aggregate function
 func (e *queryExecer) sortAndExec(ch <-chan record, f func([]int) int) <-chan result {
 	if ch == nil || f == nil {
 		return nil
